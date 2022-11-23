@@ -19,6 +19,7 @@ services:
     # docker-compose.ymlからコンテナに環境変数を渡す
     environment:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      API_DOMAIN: "localhost:$FRONT_PORT"
     volumes:
       - ./api:/$WORKDIR
     depends_on:
@@ -32,6 +33,7 @@ services:
       args:
         WORKDIR: $WORKDIR
         CONTAINER_PORT: $CONTAINER_PORT
+        API_URL: "http://localhost:$API_PORT"
     command: npm run dev
     volumes:
       - ./front:/$WORKDIR
